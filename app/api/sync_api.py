@@ -132,6 +132,9 @@ class SyncBookApi(metaclass=SyncBookApiMeta):
         return self.__execute_response(response)
 
     def filter_book(self, filter: dict = None):
+
+        filter = {k: v for k, v in filter.items() if v}
+
         response = self.__session.post(f"{config.URL_BOOKS}{'filters/'}", json=filter)
         return self.__execute_response(response)
 
